@@ -1,0 +1,22 @@
+{
+  "name": "reactopt",
+  "version": "1.0.0",
+  "description": "React performance optimization CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/candacerogue/reactopt.git"
+  },
+  "author": "Cache Money <reactopt@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/candacerogue/reactopt/issues"
+  },
+  "engines":{
+    "node": ">=4.2.4"
+  },
+  "homepage": "https://github.com/candacerogue/reactopt#readme"
+}
