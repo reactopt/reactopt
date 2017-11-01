@@ -16,8 +16,11 @@
   "bugs": {
     "url": "https://github.com/candacerogue/reactopt/issues"
   },
-  "engines":{
+  "engines": {
     "node": ">=4.2.4"
   },
-  "homepage": "https://github.com/candacerogue/reactopt#readme"
+  "homepage": "https://github.com/candacerogue/reactopt#readme",
+  "dependencies": {
+    "chrome-launcher": "^0.8.1"
+  }
 }
