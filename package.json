@@ -4,7 +4,7 @@
   "description": "React performance optimization CLI",
   "main": "index.js",
   "scripts": {
-    "reactopt": "node __tests__/test.js"
+    "test": "nodemon __tests__/test.js"
   },
   "repository": {
     "type": "git",
