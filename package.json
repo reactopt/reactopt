@@ -8,17 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/candacerogue/reactopt.git"
+    "url": "git+https://github.com/CacheM0ney/reactopt.git"
+
   },
   "author": "Cache Money <reactopt@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/candacerogue/reactopt/issues"
+    "url": "https://github.com/CacheM0ney/reactopt/issues"
+
   },
   "engines": {
     "node": ">=4.2.4"
   },
-  "homepage": "https://github.com/candacerogue/reactopt#readme",
+
+  "homepage": "https://github.com/CacheM0ney/reactopt#readme",
   "devDependencies": {
     "test": ">=0.0.5",
     "enzyme": "^3.1.0",
