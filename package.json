@@ -1,0 +1,30 @@
+{
+  "name": "reactopt",
+  "version": "1.0.0",
+  "description": "React performance optimization CLI",
+  "main": "index.js",
+  "scripts": {
+    "reactopt": "node __tests__/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/candacerogue/reactopt.git"
+  },
+  "author": "Cache Money <reactopt@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/candacerogue/reactopt/issues"
+  },
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "homepage": "https://github.com/candacerogue/reactopt#readme",
+  "devDependencies": {
+    "test": ">=0.0.5",
+    "enzyme": "^3.1.0",
+    "jest": "^21.2.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.0.0",
+    "react-test-renderer": "^16.0.0"
+  }
+}
