@@ -4,22 +4,30 @@
   "description": "React performance optimization CLI",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon test/test.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "reactopt": "node __tests__/test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CacheM0ney/reactopt.git"
+
   },
   "author": "Cache Money <reactopt@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CacheM0ney/reactopt/issues"
+
   },
   "engines": {
     "node": ">=4.2.4"
   },
+
   "homepage": "https://github.com/CacheM0ney/reactopt#readme",
-  "dependencies": {
+  "devDependencies": {
+    "test": ">=0.0.5",
+    "enzyme": "^3.1.0",
+    "jest": "^21.2.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^16.0.0",
+    "react-test-renderer": "^16.0.0"
   }
 }
