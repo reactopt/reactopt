@@ -7,7 +7,7 @@ An open-source, CLI React performance optimization tool.
 ## Install and Use
 npm install
 ```bash
-npm install --save-dev why-did-you-update
+npm install --save-dev reactopt
 ```
 
 Include this code at the top of your main React component file
