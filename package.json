@@ -15,20 +15,12 @@
     "url": "git+https://github.com/CacheM0ney/reactopt.git"
   },
   "scripts": {
-    "reactopt": "node main.js",
-    "build": "nwb build",
-    "clean": "nwb clean",
-    "start": "nwb serve",
-    "test": "nwb test",
-    "test:watch": "nwb test --server",
-    "release:patch": "nwb build && npm version patch && npm publish"
+    "reactopt": "node main.js"
   },
   "devDependencies": {
     "fs": "0.0.1-security",
     "lodash": "^4.13.1",
     "lodash-webpack-plugin": "^0.8.1",
-    "nwb": "0.9.x",
-    "test": ">=0.0.5",
     "react": "^15.0 || 0.14.x",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.0.0",
