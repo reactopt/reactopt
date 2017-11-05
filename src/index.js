@@ -1,4 +1,5 @@
 'use strict';
+console.log("made it to why-did-you-update index.js");
 //unknown
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -13,13 +14,13 @@ var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
 // data is an object
-var data = require('./../data/data');
+var data = require('./../data');
 var currentEventName = "";
 
 function automatedEvent() {
   //placeholder for every time one of our automated test events happens
   //call to eventHappens w/ event name/description as string argument
-  eventHappens("clickButton");
+  eventHappens("testEventName");
 }
 
 //this logic will be placed (not in a function) inside of logic when each auto event occurs
@@ -107,7 +108,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
       };
     }
     // test lod of data
-    console.log(data);
+    console.log("OUR DATA OBJECT (holding events & their components)", data);
   } catch (e) {}
 
   // returning lifecylce func defs to original/before WDYU happened
