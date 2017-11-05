@@ -2,32 +2,39 @@
   "name": "reactopt",
   "version": "1.0.0",
   "description": "React performance optimization CLI",
-  "main": "index.js",
-  "scripts": {
-    "test": "nodemon __tests__/test.js"
+  "homepage": "https://github.com/CacheM0ney/reactopt#readme",
+  "bugs": {
+    "url": "https://github.com/CacheM0ney/reactopt/issues",
+    "email": "reactopt@gmail.com"
   },
+  "license": "MIT",
+  "contributers": ["Candace Rogers", "Pam Lam", "Vu Phung", "Selina Zawacki"],  
+  "main": "main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CacheM0ney/reactopt.git"
-
   },
-  "author": "Cache Money <reactopt@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CacheM0ney/reactopt/issues"
-
+  "scripts": {
+    "reactopt": "node main.js",
+    "build": "nwb build",
+    "clean": "nwb clean",
+    "start": "nwb serve",
+    "test": "nwb test",
+    "test:watch": "nwb test --server",
+    "release:patch": "nwb build && npm version patch && npm publish"
   },
-  "engines": {
-    "node": ">=4.2.4"
-  },
-
-  "homepage": "https://github.com/CacheM0ney/reactopt#readme",
   "devDependencies": {
+    "fs": "0.0.1-security",
+    "lodash": "^4.13.1",
+    "lodash-webpack-plugin": "^0.8.1",
+    "nwb": "0.9.x",
     "test": ">=0.0.5",
-    "enzyme": "^3.1.0",
-    "jest": "^21.2.1",
+    "react": "^15.0 || 0.14.x",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=4.2.4"
   }
 }

@@ -1,0 +1,6 @@
+/coverage
+/demo/dist
+/node_modules
+npm-debug.log
+*.swo
+*.swp
