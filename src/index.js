@@ -1,5 +1,6 @@
 'use strict';
-console.log("made it to why-did-you-update index.js");
+// console.log("made it to why-did-you-update index.js");
+
 //unknown
 Object.defineProperty(exports, '__esModule', {
   value: true
