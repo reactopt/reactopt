@@ -1,3 +1,11 @@
-let storageArr = [];
+let data = {
 
-exports.storageArr = storageArr;
+hardcodedTestEventName:{
+  Middle:"Middle",
+  SavePalette:"SavePalette",
+  Top:"Top"
+  }
+  
+};
+
+export {data};

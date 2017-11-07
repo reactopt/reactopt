@@ -18,13 +18,12 @@
     "reactopt": "node main.js"
   },
   "devDependencies": {
+    "chalk": "2.3.0",
     "fs": "0.0.1-security",
     "lodash": "^4.13.1",
     "lodash-webpack-plugin": "^0.8.1",
     "react": "^15.0 || 0.14.x",
-    "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0"
+    "react-dom": "^16.0.0"
   },
   "engines": {
     "node": ">=4.2.4"

@@ -15,7 +15,7 @@ var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
 // data is an object
-var data = require('./../data');
+var data = require('./../data').data;
 var currentEventName = "";
 
 function automatedEvent() {
