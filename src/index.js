@@ -1,5 +1,5 @@
-// 'use strict';
-console.log("made it to why-did-you-update index.js");
+'use strict';
+// console.log("made it to why-did-you-update index.js");
 //unknown
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -15,7 +15,7 @@ var _shouldInclude = require('./shouldInclude');
 
 // data is an object
 var data = require('./../data');
-console.log(data);
+
 var currentEventName = "";
 
 function automatedEvent() {
