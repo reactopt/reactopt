@@ -8,7 +8,12 @@
     "email": "reactopt@gmail.com"
   },
   "license": "MIT",
-  "contributers": ["Candace Rogers", "Pam Lam", "Vu Phung", "Selina Zawacki"],  
+  "contributers": [
+    "Candace Rogers",
+    "Pam Lam",
+    "Vu Phung",
+    "Selina Zawacki"
+  ],
   "main": "main.js",
   "repository": {
     "type": "git",
