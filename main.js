@@ -16,6 +16,9 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+//import data file
+let data = require('./data').data;
+
 //start chrome-launcher to allow user to interact with React app
 chromeLauncher.launch({
   startingUrl: 'http://localhost:3000',
@@ -23,12 +26,10 @@ chromeLauncher.launch({
   rl.on('line', (line) => {
     if (line === 'exit') {
       chrome.kill();
+      endUserInteraction();
     }
   });
 });
-
-
-let data = require('./data').data;
 
 //runs on start of reactopt
 function startReactopt() {
@@ -38,38 +39,20 @@ function startReactopt() {
   loading.start();
 }
 
+startReactopt(); // runs on npm run reactopt
+
 // when user 'ends' interaction, execute this code
 function endUserInteraction() {
   //execute functions to test/print other logic
   printLine();
-  printRerenders();
+  componentRerenders();
   printLine();
   versionOfReact();
   printLine();
   productionMode();
 }
 
-function printRerenders() {
-  let events = Object.keys(data);
-
-  if (events.length !== 0) {
-    let components;
-
-    printHeading('Unnecessary Component Re-rendering');
-    printFail('There are components that unnecessarily re-rendered, and the events that triggered them:');
-    log('');
-
-    //print events and components rerendered for each
-    for (let x = 0; x < events.length; x += 1) {
-      components = Object.keys(data[events[x]]);
-      log(chalk.underline(events[x]), chalk.reset.white(' : ' + components)   );
-    }
-    printSuggestion("Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props of a component don't change.");
-  } else {
-    printPass('Your version of React is the most current and quickest.');
-  }
-}
-
+// styling for different console logs
 function printHeading(string) {
   log(chalk.black.bgWhite.dim(string));
   log('');
@@ -93,10 +76,28 @@ function printLine() {
   log('');
 }
 
-startReactopt(); // runs on npm run reactopt
-setTimeout(endUserInteraction,2000); // faking end of user interaction for testing
+// test functions
+function componentRerenders() {
+  let events = Object.keys(data);
 
-// fake tests
+  if (events.length !== 0) {
+    let components;
+
+    printHeading('Unnecessary Component Re-rendering');
+    printFail('There are components that unnecessarily re-rendered, and the events that triggered them:');
+    log('');
+
+    //print events and components rerendered for each
+    for (let x = 0; x < events.length; x += 1) {
+      components = Object.keys(data[events[x]]);
+      log(chalk.underline(events[x]), chalk.reset.white(' : ' + components)   );
+    }
+    printSuggestion("Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props of a component don't change.");
+  } else {
+    printPass('Your version of React is the most current and quickest.');
+  }
+}
+
 function versionOfReact() {
   //scrape for version
   let version = '16';
@@ -120,7 +121,6 @@ function productionMode() {
     printSuggestion('These checks are useful but can slow down your application. \n Be sure these are removed when application is put into production.');
   }
 }
-
 
 module.export = reactopt;
 
