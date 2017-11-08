@@ -10,15 +10,19 @@ npm install
 npm install --save-dev reactopt
 ```
 
-Include this code at the top of your main React component file
+Include this code at the top of your main React component file:
 ```js
 import { reactopt } from 'reactopt';
 reactopt(React);
 ```
+Include this script in your package.json:
+```js
+"reactopt": "node node_modules/reactopt/main.js"
+```
 
 Run command
 ```bash
-npm reactopt [./path-to-your-main-component]
+npm reactopt 'url of running application (local or remote)'
 ```
 
 ## Team
