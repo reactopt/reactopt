@@ -2,9 +2,9 @@
   "name": "reactopt",
   "version": "1.0.0",
   "description": "React performance optimization CLI",
-  "homepage": "https://github.com/CacheM0ney/reactopt#readme",
+  "homepage": "https://github.com/react/reactopt#readme",
   "bugs": {
-    "url": "https://github.com/CacheM0ney/reactopt/issues",
+    "url": "https://github.com/react/reactopt/issues",
     "email": "reactopt@gmail.com"
   },
   "license": "MIT",
@@ -17,7 +17,7 @@
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CacheM0ney/reactopt.git"
+    "url": "git+https://github.com/react/reactopt.git"
   },
   "scripts": {
     "reactopt": "babel-node main.js"
@@ -28,6 +28,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "chalk": "2.3.0",
+    "chalk-animation": "^1.3.0",
     "chrome-launcher": "^0.8.1",
     "fs": "0.0.1-security",
     "lodash": "^4.13.1",
@@ -38,8 +39,5 @@
   },
   "engines": {
     "node": ">=4.2.4"
-  },
-  "dependencies": {
-    "chalk-animation": "^1.3.0"
   }
 }
