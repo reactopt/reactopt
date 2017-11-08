@@ -5,11 +5,11 @@ reactopt = reactopt.whyDidYouUpdate;
 export {reactopt};
 
 //chalk requirements
-const chalk = require('chalk');
-const chalkAnimation = require('chalk-animation');
+const chalk = require('./node_modules/chalk');
+const chalkAnimation = require('./node_modules/chalk-animation');
 const log = console.log;
 
-const chromeLauncher = require('chrome-launcher');
+const chromeLauncher = require('./node_modules/chrome-launcher');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
