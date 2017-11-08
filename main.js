@@ -9,6 +9,24 @@ const chalk = require('chalk');
 const chalkAnimation = require('chalk-animation');
 const log = console.log;
 
+const chromeLauncher = require('chrome-launcher');
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+//start chrome-launcher to allow user to interact with React app
+chromeLauncher.launch({
+  startingUrl: 'http://localhost:3000',
+}).then((chrome) => {
+  rl.on('line', (line) => {
+    if (line === 'exit') {
+      chrome.kill();
+    }
+  });
+});
+
 
 let data = require('./data').data;
 
@@ -102,4 +120,7 @@ function productionMode() {
     printSuggestion('These checks are useful but can slow down your application. \n Be sure these are removed when application is put into production.');
   }
 }
+
+
+module.export = reactopt;
 
