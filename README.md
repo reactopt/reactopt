@@ -28,5 +28,5 @@ npm reactopt 'url of running application (local or remote)'
 ## Team
 This module was created by Candace Rogers, Pam Lam, Vu Phung and Selina Zawacki.
 
-## credit
+## Credit
 Utilizes a modified version of ([why-did-you-update by maicki](https://github.com/maicki/why-did-you-update))
