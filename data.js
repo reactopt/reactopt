@@ -2,4 +2,5 @@ let data = {
   click: {},
 };
 
-export {data};
+// export {data};
+module.export = data;

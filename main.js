@@ -2,7 +2,8 @@
 // import export wdyu
 let reactopt = require('./src/index.js');
 reactopt = reactopt.whyDidYouUpdate;
-export {reactopt};
+// export {reactopt};
+module.export = reactopt;
 
 //chalk requirements
 const chalk = require('chalk');
