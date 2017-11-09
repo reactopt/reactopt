@@ -3,6 +3,7 @@
 
 ## About
 An open-source, CLI React performance optimization tool.
+* module is not quite working yet! *
 
 ## Install and Use
 npm install
