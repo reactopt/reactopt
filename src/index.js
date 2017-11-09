@@ -26,9 +26,9 @@ function automatedEvent() {
 }
 
 //this logic will be placed (not in a function) inside of logic when each auto event occurs
-function eventHappens(eventName, eventType) {
-  currentEventName = eventName;
-  currentEventType = eventType;
+function eventHappens() {
+  let eventName = currentEventName;
+  let eventType = currentEventType;
   if (!data[eventType][eventName]) {
     data[eventType][eventName] = {};
   }
@@ -67,10 +67,12 @@ function createComponentDidUpdate(opts) {
 // takes in react component, triggers all other logic, is exported out
 var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
-  //CANDACE DO THIS: event listener to grab event type & target
-  // window.addEventListener('click', (e) => {
-
-  })
+  //event listener to grab event type & target to pass to data
+  window.addEventListener('click', (e) => {
+    currentEventType = 'click';
+    currentEventName = e.target.value;
+    eventHappens();
+  });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]
