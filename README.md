@@ -13,7 +13,7 @@ npm install --save-dev reactopt
 
 Include this code at the top of your main React component file:
 ```js
-import { reactopt } from 'reactopt';
+import { reactopt } from 'reactopt/export';
 reactopt(React);
 ```
 Include this script in your package.json:
@@ -23,7 +23,7 @@ Include this script in your package.json:
 
 Run command
 ```bash
-npm reactopt 'url of running application (local or remote)'
+npm run reactopt 'url of running application (local or remote)'
 ```
 
 ## Team
