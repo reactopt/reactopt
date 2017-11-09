@@ -14,10 +14,15 @@ var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
 // data is an object
-var data = require('./../data');
+// var data = require('./../data');
+let data = {
+  initialLoad: {
+    initialLoad: {}
+  },
+};
 
-var currentEventName = "";
-var currentEventType = "";
+var currentEventName = "initialLoad";
+var currentEventType = "initialLoad";
 
 // function automatedEvent() {
 //   //placeholder for every time one of our automated test events happens
@@ -60,17 +65,25 @@ function createComponentDidUpdate(opts) {
     }
     //if makes it past above non-conflicts   
     // ****** call to opts.notifier -> look normalizeOptions bottom
-    data[eventType][eventName][displayName] = displayName;
+    data[currentEventType][currentEventName][displayName] = displayName;
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
 // takes in react component, triggers all other logic, is exported out
 var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
-  //CANDACE DO THIS: event listener to grab event type & target
+  // //CANDACE DO THIS: event listener to grab event type & target
   // window.addEventListener('click', (e) => {
+  //   currentEventType = e;
+  //   currentEventName = e.target.value;
+  //   for(let currentEventName in data){
+  //     if(!currentEventName){
+  //   data[currentEventType] = currentEventName;
+  //     }
 
-  // })
+  // }
+
+  //     })
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]

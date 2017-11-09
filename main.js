@@ -1,9 +1,9 @@
 'use strict';
 // import export wdyu
-let reactopt = require('./src/index.js');
-reactopt = reactopt.whyDidYouUpdate;
-// export {reactopt};
-module.export = reactopt;
+// let reactopt = require('./src/index.js');
+// reactopt = reactopt.whyDidYouUpdate;
+// // export {reactopt};
+// module.export = reactopt;
 
 //chalk requirements
 const chalk = require('chalk');
@@ -79,24 +79,24 @@ function printLine() {
 
 // test functions
 function componentRerenders() {
-  let events = Object.keys(data);
+  // let events = Object.keys(data);
 
-  if (events.length !== 0) {
-    let components;
+  // if (events.length !== 0) {
+  //   let components;
 
-    printHeading('Unnecessary Component Re-rendering');
-    printFail('There are components that unnecessarily re-rendered, and the events that triggered them:');
-    log('');
+  //   printHeading('Unnecessary Component Re-rendering');
+  //   printFail('There are components that unnecessarily re-rendered, and the events that triggered them:');
+  //   log('');
 
-    //print events and components rerendered for each
-    for (let x = 0; x < events.length; x += 1) {
-      components = Object.keys(data[events[x]]);
-      log(chalk.underline(events[x]), chalk.reset.white(' : ' + components)   );
-    }
-    printSuggestion("Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props of a component don't change.");
-  } else {
-    printPass('Your version of React is the most current and quickest.');
-  }
+  //   //print events and components rerendered for each
+  //   for (let x = 0; x < events.length; x += 1) {
+  //     components = Object.keys(data[events[x]]);
+  //     log(chalk.underline(events[x]), chalk.reset.white(' : ' + components)   );
+  //   }
+  //   printSuggestion("Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props of a component don't change.");
+  // } else {
+  //   printPass('Your version of React is the most current and quickest.');
+  // }
 }
 
 function versionOfReact() {

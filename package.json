@@ -1,6 +1,6 @@
 {
   "name": "reactopt",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "React performance optimization CLI",
   "homepage": "https://github.com/react/reactopt#readme",
   "bugs": {
