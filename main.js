@@ -17,8 +17,8 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-//import data file
-let data = require('./data').data;
+//initialize global var for data obj from data.js
+let data;
 
 //start chrome-launcher to allow user to interact with React app
 chromeLauncher.launch({
@@ -79,24 +79,9 @@ function printLine() {
 
 // test functions
 function componentRerenders() {
-  // let events = Object.keys(data);
-
-  // if (events.length !== 0) {
-  //   let components;
-
-  //   printHeading('Unnecessary Component Re-rendering');
-  //   printFail('There are components that unnecessarily re-rendered, and the events that triggered them:');
-  //   log('');
-
-  //   //print events and components rerendered for each
-  //   for (let x = 0; x < events.length; x += 1) {
-  //     components = Object.keys(data[events[x]]);
-  //     log(chalk.underline(events[x]), chalk.reset.white(' : ' + components)   );
-  //   }
-  //   printSuggestion("Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props of a component don't change.");
-  // } else {
-  //   printPass('Your version of React is the most current and quickest.');
-  // }
+  // imports data object from data.js
+  data = require('./src/index.js').data;
+  console.log("data yay!", data);
 }
 
 function versionOfReact() {

@@ -14,12 +14,8 @@ var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
 // data is an object
-// var data = require('./../data');
-let data = {
-  initialLoad: {
-    initialLoad: {}
-  },
-};
+var data = require('./../data').data;
+module.exports.data = data;
 
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
