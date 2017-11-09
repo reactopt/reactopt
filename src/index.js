@@ -17,6 +17,7 @@ var _shouldInclude = require('./shouldInclude');
 var data = require('./../data');
 
 var currentEventName = "";
+var currentEventType = "";
 
 function automatedEvent() {
   //placeholder for every time one of our automated test events happens
@@ -25,10 +26,11 @@ function automatedEvent() {
 }
 
 //this logic will be placed (not in a function) inside of logic when each auto event occurs
-function eventHappens(eventName) {
+function eventHappens(eventName, eventType) {
   currentEventName = eventName;
-  if (!data[eventName]) {
-    data[eventName] = {};
+  currentEventType = eventType;
+  if (!data[eventType][eventName]) {
+    data[eventType][eventName] = {};
   }
 }
 
@@ -58,12 +60,17 @@ function createComponentDidUpdate(opts) {
     }
     //if makes it past above non-conflicts   
     // ****** call to opts.notifier -> look normalizeOptions bottom
-    data[currentEventName][displayName] = displayName;
+    data[eventType][eventName][displayName] = displayName;
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
 // takes in react component, triggers all other logic, is exported out
 var whyDidYouUpdate = function whyDidYouUpdate(React) {
+
+  //CANDACE DO THIS: event listener to grab event type & target
+  // window.addEventListener('click', (e) => {
+
+  })
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]
