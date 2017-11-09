@@ -19,11 +19,11 @@ var data = require('./../data');
 var currentEventName = "";
 var currentEventType = "";
 
-function automatedEvent() {
-  //placeholder for every time one of our automated test events happens
-  //call to eventHappens w/ event name/description as string argument
-  eventHappens("testEventName");
-}
+// function automatedEvent() {
+//   //placeholder for every time one of our automated test events happens
+//   //call to eventHappens w/ event name/description as string argument
+//   eventHappens("testEventName");
+// }
 
 //this logic will be placed (not in a function) inside of logic when each auto event occurs
 function eventHappens(eventName, eventType) {
@@ -35,7 +35,7 @@ function eventHappens(eventName, eventType) {
 }
 
 //test invocation
-automatedEvent();
+// automatedEvent();
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
@@ -70,7 +70,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   //CANDACE DO THIS: event listener to grab event type & target
   // window.addEventListener('click', (e) => {
 
-  })
+  // })
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]
