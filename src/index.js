@@ -14,16 +14,21 @@ var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
 // data is an object
-var data = require('./../data');
+// var data = require('./../data');
+let data = {
+  initialLoad: {
+    initialLoad: {}
+  },
+};
 
-var currentEventName = "";
-var currentEventType = "";
+var currentEventName = "initialLoad";
+var currentEventType = "initialLoad";
 
-function automatedEvent() {
-  //placeholder for every time one of our automated test events happens
-  //call to eventHappens w/ event name/description as string argument
-  eventHappens("testEventName");
-}
+// function automatedEvent() {
+//   //placeholder for every time one of our automated test events happens
+//   //call to eventHappens w/ event name/description as string argument
+//   eventHappens("testEventName");
+// }
 
 //this logic will be placed (not in a function) inside of logic when each auto event occurs
 function eventHappens() {
@@ -35,7 +40,7 @@ function eventHappens() {
 }
 
 //test invocation
-automatedEvent();
+// automatedEvent();
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
@@ -60,7 +65,7 @@ function createComponentDidUpdate(opts) {
     }
     //if makes it past above non-conflicts   
     // ****** call to opts.notifier -> look normalizeOptions bottom
-    data[eventType][eventName][displayName] = displayName;
+    data[currentEventType][currentEventName][displayName] = displayName;
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
