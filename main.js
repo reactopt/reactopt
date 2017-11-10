@@ -12,20 +12,55 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-//initialize global var for data obj from data.js
-let data;
-
 //start chrome-launcher to allow user to interact with React app
 chromeLauncher.launch({
   startingUrl: 'http://localhost:3000',
 }).then((chrome) => {
   rl.on('line', (line) => {
     if (line === 'exit') {
-      chrome.kill();
+      // chrome.kill();
       endUserInteraction();
     }
   });
 });
+
+//test data object
+//initialize global var for data obj from data.js
+// var data = require('./data').data;
+var data = {
+  initialLoad: {
+    initialLoad: {
+      Bottom:"Bottom",
+      ClearPalette:"ClearPalette",
+      ColorInput:"ColorInput",
+      Middle:"Middle",
+      SavePalette:"SavePalette",
+      Top:"Top"
+    }
+  },
+  click:{
+    savePalette: {
+      Bottom:"Bottom",
+      ClearPalette:"ClearPalette",
+      ColorInput:"ColorInput",
+      Middle:"Middle",
+      SavePalette:"SavePalette",
+      Top:"Top"
+    }
+  },
+   keydown:{
+    retrievePalette: {
+      Bottom:"Bottom",
+      ClearPalette:"ClearPalette",
+      ColorInput:"ColorInput",
+      Middle:"Middle",
+      SavePalette:"SavePalette",
+      Top:"Top"
+    }
+  }
+ };
+ module.exports.data = data;
+
 
 //runs on start of reactopt
 function startReactopt() {
@@ -39,7 +74,7 @@ startReactopt(); // runs on npm run reactopt
 
 // when user 'ends' interaction, execute this code
 function endUserInteraction() {
-  //execute functions to test/print other logic
+  
   printLine();
   componentRerenders();
   printLine();
@@ -73,11 +108,21 @@ function printLine() {
 }
 
 // test functions
-function componentRerenders() {
+function componentRerenders(data) {
+  console.log('hey boy');
   // imports data object from data.js
-  data = require('./src/index.js').data;
-  console.log("data yay!", data);
+  for (var key in data) {
+    log(chalk.white('On ' + key + ' of ' + data[key] + ' rerendered the following components:'));
+    if (data[key] !== null && typeof data[key] === "object") {
+      // Recurse into children
+      componentRerenders(data[key]);
+    }
+  }
 }
+// Object.keys(data).forEach((key) => {
+// log('On ' data.eventType ' of ' data.eventName ' rerendered the following components:');
+// log(data.eventType.eventName);
+// )
 
 function versionOfReact() {
   //scrape for version
@@ -102,4 +147,5 @@ function productionMode() {
     printSuggestion('These checks are useful but can slow down your application. \n Be sure these are removed when application is put into production.');
   }
 }
+
 
