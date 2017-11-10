@@ -1,5 +1,6 @@
 'use strict';
 // console.log("made it to why-did-you-update index.js");
+
 //unknown
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -13,13 +14,26 @@ var _normalizeOptions = require('./normalizeOptions');
 
 var _shouldInclude = require('./shouldInclude');
 
-// data is an object
-var data = require('./../data').data;
-module.exports.data = data;
+let data = {
+  initialLoad: {
+    initialLoad: {}
+  },
+};
+
 
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
+// convert ms to HMS
+function msToHMS(ms) {
+  let seconds = ms/ 1000;
+  let hours = parseInt( seconds / 3600 );
+  seconds = seconds % 3600;
+  let minutes = parseInt( seconds / 60);
+  seconds = seconds % 60;
+
+  return hours + ":" + minutes + ":" + seconds;
+}
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
@@ -45,11 +59,29 @@ function createComponentDidUpdate(opts) {
     //if makes it past above non-conflicts   
     // ****** call to opts.notifier -> look normalizeOptions bottom
     data[currentEventType][currentEventName][displayName] = displayName;
+    
+    // REWRITE JSON FILE HERE because we know data exists here
+ 
+    // put in a promise
+    console.log("comp did update",data);
+
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
 // takes in react component, triggers all other logic, is exported out
 var whyDidYouUpdate = function whyDidYouUpdate(React) {
+
+  // even listener for load page
+  window.addEventListener('load', () => {
+    // test
+    console.log('test', window.performance);
+    // calculation for total time taken to render the webpage
+    const startLoadTime = window.performance.timing.loadEventStart
+    const endLoadTime = window.performance.timing.domLoading
+    const deltaTime = startLoadTime - endLoadTime;
+    console.log(deltaTime + 'ms');
+    console.log(msToHMS(deltaTime));
+  });
 
   //event listener to grab event type & target to pass to data
   window.addEventListener('click', (e) => {
@@ -61,8 +93,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     }
 
     data[currentEventType][currentEventName] = {};
-
-    console.log(data);
+    console.log("pam data", data);    
   });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
@@ -124,6 +155,14 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   return React;
 
 };
+
+
+// this didn't work because it exported immediately with data defined as 
+// var exportData = function() {
+//   console.log("indexjs data", data);
+//   return data;
+// };
+// exports.exportData = exportData;
 
 exports.whyDidYouUpdate = whyDidYouUpdate;
 exports['default'] = whyDidYouUpdate;
