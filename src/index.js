@@ -89,11 +89,11 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     currentEventType = 'click';
     currentEventName = e.target.value;
     
-    if (!window.data[currentEventType]) {
-          window.data[currentEventType] = {};
-    }
+    // if (!window.data[currentEventType]) {
+    //       window.data[currentEventType] = {};
+    // }
 
-    window.data[currentEventType][currentEventName] = {};
+    // window.data[currentEventType][currentEventName] = {};
     console.log("pam data", window.data);    
   });
   

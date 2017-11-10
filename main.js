@@ -16,17 +16,24 @@ const rl = readline.createInterface({
 puppeteer.launch({headless: false}).then(async browser => {
   const page = await browser.newPage();
   await page.goto('http://localhost:3000');
-  //grab data object from the page to use
-  const grabData = await page.evaluate(() => {
-    console.log("LOOK HERE", window.data);
-  });
-  //close browser on 'exit'
+
+  //close browser on 'exit' but also grab data before closing browser
   await rl.on('line', (line) => {
     if (line === 'exit') {
-      browser.close();
+      page.evaluate(() => {
+        return window.data
+      }).then((returnedData) => {
+        data = returnedData;
+        browser.close();
+        printToCLI();
+      });
     }
-  });  
-});
+  });
+
+  function printToCLI() {
+    //add functionality here to grab data to print to CLI
+    console.log(data);
+  }
 
 //runs on start of reactopt
 function startReactopt() {
