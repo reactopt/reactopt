@@ -12,6 +12,8 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+let data; 
+
 //start puppeteer to allow user to interact with React app
 puppeteer.launch({headless: false}).then(async browser => {
   const page = await browser.newPage();
@@ -19,37 +21,51 @@ puppeteer.launch({headless: false}).then(async browser => {
 
   //close browser on 'exit' but also grab data before closing browser
   await rl.on('line', (line) => {
-    if (line === 'exit') {
+    if (line === 'done') {
       page.evaluate(() => {
         return window.data
       }).then((returnedData) => {
         data = returnedData;
         browser.close();
-        printToCLI();
-      });
+        return data;
+      }).then(printToCLI);
     }
   });
+});
 
-  function printToCLI() {
-    //add functionality here to grab data to print to CLI
-    console.log(data);
-  }
+function printLogo() {
+  // console.log("printlogo data", data);
+  require('console-png').attachTo(console);
+  let image = require('fs').readFileSync(__dirname + '/logo-small.png');
+  console.png(image);
+}
+
+function printToCLI() {
+  // console.log(data);
+  logAudits(data);
+  //add functionality here to grab data to print to CLI
+}
 
 //runs on start of reactopt
 function startReactopt() {
-  log(chalk.bgCyan.bold('Reactopt is running - Interact with your app and then type/enter "end"'));
-  log('');
-  const loading = chalkAnimation.radar('----------------------------------------------------------------------');
-  loading.start();
+  printLogo();
+  setTimeout(reactoptRun,1000);
+  function reactoptRun() {
+    log('');
+    log('');
+    log(chalk.bgGreen.bold('Reactopt is running - Interact with your app and then type/enter "end"'));
+    log('');
+    const loading = chalkAnimation.radar('----------------------------------------------------------------------');
+    loading.start();
+  }
 }
 
 startReactopt(); // runs on npm run reactopt
 
 // when user 'ends' interaction, execute this code
-function endUserInteraction() {
-  
+function logAudits(data) {
   printLine();
-  componentRerenders();
+  componentRerenders(data);
   printLine();
   versionOfReact();
   printLine();
@@ -63,7 +79,7 @@ function printHeading(string) {
 }
 
 function printPass(string) {
-  log(chalk.cyan.bold(string));
+  log(chalk.green.bold(string));
 }
 
 function printFail(string) {
@@ -82,10 +98,10 @@ function printLine() {
 
 // test functions
 function componentRerenders(data) {
+  printHeading('Component Re-rendering');
+  log('');
   console.log('hey boy');
-  // imports data object from data.js
-  // data = require('./src/index.js').data;
-  console.log("data yay!", data);
+
   for (var key in data) {
     log(chalk.white('On ' + key + ' of ' + data[key] + ' rerendered the following components:'));
     if (data[key] !== null && typeof data[key] === "object") {
@@ -122,5 +138,3 @@ function productionMode() {
     printSuggestion('These checks are useful but can slow down your application. \n Be sure these are removed when application is put into production.');
   }
 }
-
-
