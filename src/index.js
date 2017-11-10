@@ -14,13 +14,6 @@ var _normalizeOptions = require('./normalizeOptions');
 
 var _shouldInclude = require('./shouldInclude');
 
-let data = {
-  initialLoad: {
-    initialLoad: {}
-  },
-};
-
-
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
@@ -56,15 +49,23 @@ function createComponentDidUpdate(opts) {
     if (stateDiff.type === _deepDiff.DIFF_TYPES.UNAVOIDABLE) {
       return;
     }
-    //if makes it past above non-conflicts   
-    // ****** call to opts.notifier -> look normalizeOptions bottom
-    data[currentEventType][currentEventName][displayName] = displayName;
-    
-    // REWRITE JSON FILE HERE because we know data exists here
- 
-    // put in a promise
-    console.log("comp did update",data);
+    //if makes it past above non-conflicts
 
+    if (!window.data) {
+      window.data = {}
+    }
+    
+    if (!window.data[currentEventType]) {
+          window.data[currentEventType] = {};
+    }
+
+    if (!window.data[currentEventType][currentEventName]) {
+      window.data[currentEventType][currentEventName] = {};
+    }
+
+    window.data[currentEventType][currentEventName][displayName] = displayName;
+
+    // ****** call to opts.notifier -> look normalizeOptions bottom
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
@@ -88,12 +89,12 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     currentEventType = 'click';
     currentEventName = e.target.value;
     
-    if (!data[currentEventType]) {
-      data[currentEventType] = {};
+    if (!window.data[currentEventType]) {
+          window.data[currentEventType] = {};
     }
 
-    data[currentEventType][currentEventName] = {};
-    console.log("pam data", data);    
+    window.data[currentEventType][currentEventName] = {};
+    console.log("pam data", window.data);    
   });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
@@ -155,14 +156,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   return React;
 
 };
-
-
-// this didn't work because it exported immediately with data defined as 
-// var exportData = function() {
-//   console.log("indexjs data", data);
-//   return data;
-// };
-// exports.exportData = exportData;
 
 exports.whyDidYouUpdate = whyDidYouUpdate;
 exports['default'] = whyDidYouUpdate;

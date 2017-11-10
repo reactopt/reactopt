@@ -5,62 +5,28 @@ const chalk = require('chalk');
 const chalkAnimation = require('chalk-animation');
 const log = console.log;
 
-const chromeLauncher = require('chrome-launcher');
+const puppeteer = require('puppeteer');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-//start chrome-launcher to allow user to interact with React app
-chromeLauncher.launch({
-  startingUrl: 'http://localhost:3000',
-}).then((chrome) => {
-  rl.on('line', (line) => {
-    if (line === 'exit') {
-      // chrome.kill();
-      endUserInteraction();
-    }
+//start puppeteer to allow user to interact with React app
+puppeteer.launch({headless: false}).then(async browser => {
+  const page = await browser.newPage();
+  await page.goto('http://localhost:3000');
+  //grab data object from the page to use
+  const grabData = await page.evaluate(() => {
+    console.log("LOOK HERE", window.data);
   });
+  //close browser on 'exit'
+  await rl.on('line', (line) => {
+    if (line === 'exit') {
+      browser.close();
+    }
+  });  
 });
-
-//test data object
-//initialize global var for data obj from data.js
-// var data = require('./data').data;
-var data = {
-  initialLoad: {
-    initialLoad: {
-      Bottom:"Bottom",
-      ClearPalette:"ClearPalette",
-      ColorInput:"ColorInput",
-      Middle:"Middle",
-      SavePalette:"SavePalette",
-      Top:"Top"
-    }
-  },
-  click:{
-    savePalette: {
-      Bottom:"Bottom",
-      ClearPalette:"ClearPalette",
-      ColorInput:"ColorInput",
-      Middle:"Middle",
-      SavePalette:"SavePalette",
-      Top:"Top"
-    }
-  },
-   keydown:{
-    retrievePalette: {
-      Bottom:"Bottom",
-      ClearPalette:"ClearPalette",
-      ColorInput:"ColorInput",
-      Middle:"Middle",
-      SavePalette:"SavePalette",
-      Top:"Top"
-    }
-  }
- };
- module.exports.data = data;
-
 
 //runs on start of reactopt
 function startReactopt() {
@@ -111,6 +77,8 @@ function printLine() {
 function componentRerenders(data) {
   console.log('hey boy');
   // imports data object from data.js
+  // data = require('./src/index.js').data;
+  console.log("data yay!", data);
   for (var key in data) {
     log(chalk.white('On ' + key + ' of ' + data[key] + ' rerendered the following components:'));
     if (data[key] !== null && typeof data[key] === "object") {
