@@ -26,15 +26,6 @@ chromeLauncher.launch({
   });
 });
 
-// function rewriteJSON(data) {
-//   fs.writeFile("./../data.json", JSON.stringify(data), function(err) {
-//     if(err) {
-//         return console.log(err);
-//     }
-//   });
-// }
-// exports.rewriteJSON = rewriteJSON;
-
 //runs on start of reactopt
 function startReactopt() {
   log(chalk.bgCyan.bold('Reactopt is running - Interact with your app and then type/enter "end"'));
@@ -47,12 +38,7 @@ startReactopt(); // runs on npm run reactopt
 
 // when user 'ends' interaction, execute this code
 function endUserInteraction() {
-  // let exportData = require('./src/index.js');
-  // exportData = exportData.exportData;
-
-  // let data = exportData();
-  // log("testdata",data);
-  //execute functions to test/print other logic
+  
   printLine();
   componentRerenders();
   printLine();

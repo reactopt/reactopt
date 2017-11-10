@@ -1,14 +1,6 @@
 'use strict';
 // console.log("made it to why-did-you-update index.js");
 
-// var fs = require('fs');
-// fs.writeFile("./../data.json", JSON.stringify(data), function(err) {
-//   if(err) {
-//       return console.log(err);
-//   }
-// });
-// console.log("after func");
-
 //unknown
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -21,14 +13,6 @@ var _getDisplayName = require('./getDisplayName');
 var _normalizeOptions = require('./normalizeOptions');
 
 var _shouldInclude = require('./shouldInclude');
-
-
-
-// let rewriteJSON = require('./../middle');
-// rewriteJSON = rewriteJSON.rewriteJSON;
-// data is an object
-// var data = require('./../main').data;
-// exports.data = data;
 
 let data = {
   initialLoad: {
@@ -67,8 +51,7 @@ function createComponentDidUpdate(opts) {
     data[currentEventType][currentEventName][displayName] = displayName;
     
     // REWRITE JSON FILE HERE because we know data exists here
-    
-
+ 
     // put in a promise
     console.log("comp did update",data);
 
