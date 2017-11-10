@@ -1,5 +1,14 @@
 'use strict';
 // console.log("made it to why-did-you-update index.js");
+
+// var fs = require('fs');
+// fs.writeFile("./../data.json", JSON.stringify(data), function(err) {
+//   if(err) {
+//       return console.log(err);
+//   }
+// });
+// console.log("after func");
+
 //unknown
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -13,6 +22,10 @@ var _normalizeOptions = require('./normalizeOptions');
 
 var _shouldInclude = require('./shouldInclude');
 
+
+
+// let rewriteJSON = require('./../middle');
+// rewriteJSON = rewriteJSON.rewriteJSON;
 // data is an object
 // var data = require('./../main').data;
 // exports.data = data;
@@ -22,7 +35,7 @@ let data = {
     initialLoad: {}
   },
 };
-// exports.data = data;
+
 
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
@@ -52,6 +65,13 @@ function createComponentDidUpdate(opts) {
     //if makes it past above non-conflicts   
     // ****** call to opts.notifier -> look normalizeOptions bottom
     data[currentEventType][currentEventName][displayName] = displayName;
+    
+    // REWRITE JSON FILE HERE because we know data exists here
+    
+
+    // put in a promise
+    console.log("comp did update",data);
+
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
@@ -68,9 +88,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     }
 
     data[currentEventType][currentEventName] = {};
-
-    console.log(data);
-    exports.data = data;
+    console.log("pam data", data);    
   });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
@@ -132,6 +150,14 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   return React;
 
 };
+
+
+// this didn't work because it exported immediately with data defined as 
+// var exportData = function() {
+//   console.log("indexjs data", data);
+//   return data;
+// };
+// exports.exportData = exportData;
 
 exports.whyDidYouUpdate = whyDidYouUpdate;
 exports['default'] = whyDidYouUpdate;

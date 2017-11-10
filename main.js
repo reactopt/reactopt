@@ -5,6 +5,8 @@ const chalk = require('chalk');
 const chalkAnimation = require('chalk-animation');
 const log = console.log;
 
+
+
 const chromeLauncher = require('chrome-launcher');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -12,26 +14,26 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-//initialize global var for data obj from data.js
-let data;
-// let data = {
-//   initialLoad: {
-//     initialLoad: {}
-//   },
-// };
-// module.exports.data = data;
-
 //start chrome-launcher to allow user to interact with React app
 chromeLauncher.launch({
   startingUrl: 'http://localhost:3000',
 }).then((chrome) => {
   rl.on('line', (line) => {
     if (line === 'exit') {
-      chrome.kill();
+      // chrome.kill();
       endUserInteraction();
     }
   });
 });
+
+// function rewriteJSON(data) {
+//   fs.writeFile("./../data.json", JSON.stringify(data), function(err) {
+//     if(err) {
+//         return console.log(err);
+//     }
+//   });
+// }
+// exports.rewriteJSON = rewriteJSON;
 
 //runs on start of reactopt
 function startReactopt() {
@@ -45,6 +47,11 @@ startReactopt(); // runs on npm run reactopt
 
 // when user 'ends' interaction, execute this code
 function endUserInteraction() {
+  // let exportData = require('./src/index.js');
+  // exportData = exportData.exportData;
+
+  // let data = exportData();
+  // log("testdata",data);
   //execute functions to test/print other logic
   printLine();
   componentRerenders();
@@ -81,8 +88,9 @@ function printLine() {
 // test functions
 function componentRerenders() {
   // imports data object from data.js
-  data = require('./src/index.js').data;
-  console.log("data yay!", data);
+  // data = require('./src/index.js');
+  // data= data.whyDidYouUpdate;
+  // console.log("data yay!", data);
 }
 
 function versionOfReact() {
@@ -108,4 +116,5 @@ function productionMode() {
     printSuggestion('These checks are useful but can slow down your application. \n Be sure these are removed when application is put into production.');
   }
 }
+
 
