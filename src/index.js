@@ -20,23 +20,6 @@ module.exports.data = data;
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
-// function automatedEvent() {
-//   //placeholder for every time one of our automated test events happens
-//   //call to eventHappens w/ event name/description as string argument
-//   eventHappens("testEventName");
-// }
-
-//this logic will be placed (not in a function) inside of logic when each auto event occurs
-function eventHappens() {
-  let eventName = currentEventName;
-  let eventType = currentEventType;
-  if (!data[eventType][eventName]) {
-    data[eventType][eventName] = {};
-  }
-}
-
-//test invocation
-// automatedEvent();
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
@@ -72,7 +55,14 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   window.addEventListener('click', (e) => {
     currentEventType = 'click';
     currentEventName = e.target.value;
-    eventHappens();
+    
+    if (!data[currentEventType]) {
+      data[currentEventType] = {};
+    }
+
+    data[currentEventType][currentEventName] = {};
+
+    console.log(data);
   });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
