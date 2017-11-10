@@ -14,8 +14,15 @@ var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
 // data is an object
-var data = require('./../data').data;
-module.exports.data = data;
+// var data = require('./../main').data;
+// exports.data = data;
+
+let data = {
+  initialLoad: {
+    initialLoad: {}
+  },
+};
+// exports.data = data;
 
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
@@ -63,6 +70,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     data[currentEventType][currentEventName] = {};
 
     console.log(data);
+    exports.data = data;
   });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component

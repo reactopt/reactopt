@@ -14,6 +14,12 @@ const rl = readline.createInterface({
 
 //initialize global var for data obj from data.js
 let data;
+// let data = {
+//   initialLoad: {
+//     initialLoad: {}
+//   },
+// };
+// module.exports.data = data;
 
 //start chrome-launcher to allow user to interact with React app
 chromeLauncher.launch({
