@@ -18,7 +18,8 @@ const rl = readline.createInterface({
 });
 
 //initialize global var for data obj from data.js
-let data;
+let data = require('./data').data;
+// data = require('./../data').data;
 
 //start chrome-launcher to allow user to interact with React app
 chromeLauncher.launch({
@@ -27,7 +28,7 @@ chromeLauncher.launch({
   rl.on('line', (line) => {
     if (line === 'exit') {
       chrome.kill();
-      endUserInteraction();
+      endUserInteraction(data);
     }
   });
 });
@@ -80,7 +81,7 @@ function printLine() {
 // test functions
 function componentRerenders() {
   // imports data object from data.js
-  data = require('./src/index.js').data;
+  // data = require('./src/index.js').data;
   console.log("data yay!", data);
 }
 
