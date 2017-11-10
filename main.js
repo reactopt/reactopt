@@ -5,8 +5,6 @@ const chalk = require('chalk');
 const chalkAnimation = require('chalk-animation');
 const log = console.log;
 
-
-
 const chromeLauncher = require('chrome-launcher');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -25,6 +23,44 @@ chromeLauncher.launch({
     }
   });
 });
+
+//test data object
+//initialize global var for data obj from data.js
+// var data = require('./data').data;
+var data = {
+  initialLoad: {
+    initialLoad: {
+      Bottom:"Bottom",
+      ClearPalette:"ClearPalette",
+      ColorInput:"ColorInput",
+      Middle:"Middle",
+      SavePalette:"SavePalette",
+      Top:"Top"
+    }
+  },
+  click:{
+    savePalette: {
+      Bottom:"Bottom",
+      ClearPalette:"ClearPalette",
+      ColorInput:"ColorInput",
+      Middle:"Middle",
+      SavePalette:"SavePalette",
+      Top:"Top"
+    }
+  },
+   keydown:{
+    retrievePalette: {
+      Bottom:"Bottom",
+      ClearPalette:"ClearPalette",
+      ColorInput:"ColorInput",
+      Middle:"Middle",
+      SavePalette:"SavePalette",
+      Top:"Top"
+    }
+  }
+ };
+ module.exports.data = data;
+
 
 //runs on start of reactopt
 function startReactopt() {
@@ -72,12 +108,21 @@ function printLine() {
 }
 
 // test functions
-function componentRerenders() {
+function componentRerenders(data) {
+  console.log('hey boy');
   // imports data object from data.js
-  // data = require('./src/index.js');
-  // data= data.whyDidYouUpdate;
-  // console.log("data yay!", data);
+  for (var key in data) {
+    log(chalk.white('On ' + key + ' of ' + data[key] + ' rerendered the following components:'));
+    if (data[key] !== null && typeof data[key] === "object") {
+      // Recurse into children
+      componentRerenders(data[key]);
+    }
+  }
 }
+// Object.keys(data).forEach((key) => {
+// log('On ' data.eventType ' of ' data.eventName ' rerendered the following components:');
+// log(data.eventType.eventName);
+// )
 
 function versionOfReact() {
   //scrape for version
