@@ -14,8 +14,8 @@ const rl = readline.createInterface({
 
 let data; 
 
-let uri = process.argv[2]; // gets url from CLI "npm start [url]"
-// let uri = 'http://localhost:3000'; // testing uri
+// let uri = process.argv[2]; // gets url from CLI "npm start [url]"
+let uri = 'http://localhost:3000'; // testing uri
 
 //start puppeteer to allow user to interact with React app
 puppeteer.launch({headless: false}).then(async browser => {
@@ -69,7 +69,7 @@ startReactopt(); // runs on npm run reactopt
 // when user 'ends' interaction, execute this code
 function logAudits(data) {
   printLine();
-  loadTime();
+  loadTime(data);
   printLine();
   componentRerenders(data);
   printLine();
@@ -158,9 +158,9 @@ function componentRerenders(data) {
 //   printSuggestion("Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props each component utilizes don't change.");
 // }
 
-function loadTime() {
+function loadTime(data) {
   printHeading('Page Load Time');
-  printPass('Your page took 178ms to load');
+  printPass('Your page took ' + data.time + ' to load');
 }
 
 function versionOfReact() {

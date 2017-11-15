@@ -18,15 +18,15 @@ var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
 // convert ms to HMS
-function msToHMS(ms) {
-  let seconds = ms/ 1000;
-  let hours = parseInt( seconds / 3600 );
-  seconds = seconds % 3600;
-  let minutes = parseInt( seconds / 60);
-  seconds = seconds % 60;
+// function msToHMS(ms) {
+//   let seconds = ms/ 1000;
+//   let hours = parseInt( seconds / 3600 );
+//   seconds = seconds % 3600;
+//   let minutes = parseInt( seconds / 60);
+//   seconds = seconds % 60;
 
-  return hours + ":" + minutes + ":" + seconds;
-}
+//   return hours + ":" + minutes + ":" + seconds;
+// }
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
@@ -51,9 +51,9 @@ function createComponentDidUpdate(opts) {
     }
     //if makes it past above non-conflicts
 
-    if (!window.data) {
-      window.data = {}
-    }
+    // if (!window.data) {
+    //   window.data = {}
+    // }
     
     if (!window.data[currentEventType]) {
           window.data[currentEventType] = {};
@@ -74,14 +74,12 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
   // even listener for load page
   window.addEventListener('load', () => {
-    // test
-    console.log('test', window.performance);
     // calculation for total time taken to render the webpage
     const startLoadTime = window.performance.timing.loadEventStart
     const endLoadTime = window.performance.timing.domLoading
     const deltaTime = startLoadTime - endLoadTime;
-    console.log(deltaTime + 'ms');
-    console.log(msToHMS(deltaTime));
+    window.data = {};
+    window.data.time = deltaTime + 'ms';
   });
 
   //event listener to grab event type & target to pass to data
