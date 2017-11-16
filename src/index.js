@@ -51,9 +51,9 @@ function createComponentDidUpdate(opts) {
     }
     //if makes it past above non-conflicts
 
-    // if (!window.data) {
-    //   window.data = {}
-    // }
+    if (!window.data) {
+      window.data = {};
+    }
     
     if (!window.data[currentEventType]) {
           window.data[currentEventType] = {};
