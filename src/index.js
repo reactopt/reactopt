@@ -49,21 +49,24 @@ function createComponentDidUpdate(opts) {
     if (stateDiff.type === _deepDiff.DIFF_TYPES.UNAVOIDABLE) {
       return;
     }
-    //if makes it past above non-conflicts
+    //if makes it past above non-conflicts (meaning there are components re-rendering unnecessarily)
+    // temp timeout because event listener sets global event names after components re-render
+    setTimeout(timeTest,100);
+    function timeTest() {
+      if (!window.data) {
+        window.data = {};
+      }
+      
+      if (!window.data[currentEventType]) {
+            window.data[currentEventType] = {};
+      }
 
-    if (!window.data) {
-      window.data = {};
-    }
-    
-    if (!window.data[currentEventType]) {
-          window.data[currentEventType] = {};
-    }
+      if (!window.data[currentEventType][currentEventName]) {
+        window.data[currentEventType][currentEventName] = {};
+      }
 
-    if (!window.data[currentEventType][currentEventName]) {
-      window.data[currentEventType][currentEventName] = {};
+      window.data[currentEventType][currentEventName][displayName] = displayName;
     }
-
-    window.data[currentEventType][currentEventName][displayName] = displayName;
 
     // ****** call to opts.notifier -> look normalizeOptions bottom
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
@@ -85,14 +88,40 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   //event listener to grab event type & target to pass to data
   window.addEventListener('click', (e) => {
     currentEventType = 'click';
-    currentEventName = e.target.value;
-    
-    // if (!window.data[currentEventType]) {
-    //       window.data[currentEventType] = {};
-    // }
+    let localName = e.target.localName;
+    let innerText = '';
+    // console.log('e.target', e.target);
 
-    // window.data[currentEventType][currentEventName] = {};
-    console.log("pam data", window.data);    
+    function setInnerText(type, targetInfo) {
+      innerText = type +': ' + targetInfo;
+    }
+    // if clicked element is '<button>', check innerText, then id, then className for descriptor
+    if (localName === 'button') {
+      if (e.target.innerText) {
+        setInnerText('text', e.target.innerText);
+      } else if (e.target.id) {
+        setInnerText('id', e.target.target.id);
+      } else if (e.target.className){
+        setInnerText('className', e.target.className);
+      } 
+    } 
+    // if clicked element is '<img>', check alt text, then className for descriptor
+    else if (localName === 'img') {
+      if (e.target.alt) {
+        setInnerText('alt', e.target.alt);
+      } else if (e.target.className) {
+        setInnerText('className', e.target.className);
+      }
+    }
+    else if (localName === 'div') {
+      console.log('innerText',e.target.innerText);
+      if (e.target.innerText !== undefined) {
+      }
+    } else {
+      console.log('innerText else', e.target.innerText);
+    }
+    currentEventName = localName +' ('+innerText+')';
+    console.log(currentEventName);
   });
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
