@@ -87,7 +87,19 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
   //event listener to grab event type & target to pass to data
   window.addEventListener('click', (e) => {
-    currentEventType = 'click';
+    eventClickAndDrag('click', e);
+  });
+
+  window.addEventListener('dblclick', (e) => {
+    eventClickAndDrag('dblclick', e);
+  });
+
+  window.addEventListener('drag', (e) => {
+    eventClickAndDrag('drag', e);
+  });
+
+  function eventClickAndDrag(event, e) {
+    currentEventType = event;
     let localName = e.target.localName;
     let innerText = '';
     // console.log('e.target', e.target);
@@ -113,16 +125,22 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
         setInnerText('className', e.target.className);
       }
     }
+    // if clicked element is '<div>', check id, then className for descriptor
     else if (localName === 'div') {
-      console.log('innerText',e.target.innerText);
-      if (e.target.innerText !== undefined) {
-      }
-    } else {
-      console.log('innerText else', e.target.innerText);
+      // console.log('innerText',e.target);
+      if (e.target.id) {
+        setInnerText('id', e.target.id);
+      } else if (e.target.className){
+        setInnerText('className', e.target.className);
+      } 
+    } 
+    else {
+      innerText = 'unknown';
     }
     currentEventName = localName +' ('+innerText+')';
-    console.log(currentEventName);
-  });
+    console.log('e', e);
+    console.log('currentEventName',currentEventName);
+  }
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]
