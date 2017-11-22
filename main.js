@@ -17,8 +17,8 @@ const rl = readline.createInterface({
 
 let data; 
 
-// let uri = process.argv[2]; // gets url from CLI "npm start [url]"
-let uri = 'http://localhost:3000'; // testing uri
+let uri = process.argv[2]; // gets url from CLI "npm start [url]"
+// let uri = 'http://localhost:3000'; // testing uri
 
 //start puppeteer to allow user to interact with React app
 puppeteer.launch({headless: false}).then(async browser => {
