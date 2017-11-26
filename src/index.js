@@ -40,21 +40,24 @@ function createComponentDidUpdate(opts) {
     if (stateDiff.type === _deepDiff.DIFF_TYPES.UNAVOIDABLE) {
       return;
     }
-    //if makes it past above non-conflicts
+    //if makes it past above non-conflicts (meaning there are components re-rendering unnecessarily)
+    // temp timeout because event listener sets global event names after components re-render
+    setTimeout(timeTest,100);
+    function timeTest() {
+      if (!window.data) {
+        window.data = {};
+      }
+      
+      if (!window.data[currentEventType]) {
+            window.data[currentEventType] = {};
+      }
 
-    if (!window.data) {
-      window.data = {};
-    }
-    
-    if (!window.data[currentEventType]) {
-          window.data[currentEventType] = {};
-    }
+      if (!window.data[currentEventType][currentEventName]) {
+        window.data[currentEventType][currentEventName] = {};
+      }
 
-    if (!window.data[currentEventType][currentEventName]) {
-      window.data[currentEventType][currentEventName] = {};
+      window.data[currentEventType][currentEventName][displayName] = displayName;
     }
-
-    window.data[currentEventType][currentEventName][displayName] = displayName;
 
     // ****** call to opts.notifier -> look normalizeOptions bottom
     opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
@@ -75,10 +78,60 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
   //event listener to grab event type & target to pass to data
   window.addEventListener('click', (e) => {
-    currentEventType = 'click';
-    currentEventName = e.target.value;
-     
+    eventClickAndDrag('click', e);
   });
+
+  window.addEventListener('dblclick', (e) => {
+    eventClickAndDrag('dblclick', e);
+  });
+
+  window.addEventListener('drag', (e) => {
+    eventClickAndDrag('drag', e);
+  });
+
+  function eventClickAndDrag(event, e) {
+    currentEventType = event;
+    let localName = e.target.localName;
+    let innerText = '';
+    // console.log('e.target', e.target);
+
+    function setInnerText(type, targetInfo) {
+      innerText = type +': ' + targetInfo;
+    }
+    // if clicked element is '<button>', check innerText, then id, then className for descriptor
+    if (localName === 'button') {
+      if (e.target.innerText) {
+        setInnerText('text', e.target.innerText);
+      } else if (e.target.id) {
+        setInnerText('id', e.target.target.id);
+      } else if (e.target.className){
+        setInnerText('className', e.target.className);
+      } 
+    } 
+    // if clicked element is '<img>', check alt text, then className for descriptor
+    else if (localName === 'img') {
+      if (e.target.alt) {
+        setInnerText('alt', e.target.alt);
+      } else if (e.target.className) {
+        setInnerText('className', e.target.className);
+      }
+    }
+    // if clicked element is '<div>', check id, then className for descriptor
+    else if (localName === 'div') {
+      // console.log('innerText',e.target);
+      if (e.target.id) {
+        setInnerText('id', e.target.id);
+      } else if (e.target.className){
+        setInnerText('className', e.target.className);
+      } 
+    } 
+    else {
+      innerText = 'unknown';
+    }
+    currentEventName = localName +' ('+innerText+')';
+    console.log('e', e);
+    console.log('currentEventName',currentEventName);
+  }
   
   /**
    * function handler for key pressed, key down, and input
