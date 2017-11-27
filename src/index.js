@@ -17,16 +17,7 @@ var _shouldInclude = require('./shouldInclude');
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
-// convert ms to HMS
-// function msToHMS(ms) {
-//   let seconds = ms/ 1000;
-//   let hours = parseInt( seconds / 3600 );
-//   seconds = seconds % 3600;
-//   let minutes = parseInt( seconds / 60);
-//   seconds = seconds % 60;
-
-//   return hours + ":" + minutes + ":" + seconds;
-// }
+var keyboardEvents = ['keypress', 'keydown', 'input'];
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
@@ -141,6 +132,17 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     console.log('e', e);
     console.log('currentEventName',currentEventName);
   }
+  
+  /**
+   * function handler for key pressed, key down, and input
+   */
+  function handleEvent(e) {
+    currentEventType = e.type;
+    currentEventName = e.code;
+  }
+
+  // window object listen to different keyboardEvents based on the initial keyboardEvents array
+  keyboardEvents.map(eventName => window.addEventListener(eventName, handleEvent));
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]
