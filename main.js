@@ -1,3 +1,7 @@
+// look into common.js
+// import vs export types
+// 
+
 'use strict';
 //load image
 require('console-png').attachTo(console);
@@ -120,6 +124,7 @@ function printLine() {
   log('');
 }
 
+// EVENTUALLY MODULARIZE TESTS
 // test functions
 function loadTime(data) {
   printHeading('Page Load Time');
@@ -189,6 +194,7 @@ function componentRerenders(data) {
 //   }
 // }
 
+// USEFUL
 // function dependencyLoad() {
 //   //scrape for version
 //   let unneccesaryDeps = false;
@@ -198,6 +204,7 @@ function componentRerenders(data) {
 //   } else {
 //   }
 // }
+
 
 // function fileLoad() {
 //   //check for loading too many unneccesary files at one
@@ -226,6 +233,7 @@ function componentRerenders(data) {
 //   }
 // }
 
+//USEFUL: LOADING LARGE IMAGES AND DOWNSIZING
 // function imageSize() {
 //   //scrape all image files and their size
 //   let images = [50, 600];
