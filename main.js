@@ -108,10 +108,10 @@ function componentRerenders(data) {
   // let eventTypes = Object.keys(data);
   if (data.rerenders.length !== 0) {
   // let eventNames;
-    printLine('fail', 'There are components that unnecessarily re-rendered, and the events that triggered them:');
+    printLine('fail', 'There are components that are potentially being unnecessarily re-rendered, and the events that triggered them:');
     log('');
   // print eventTypes, eventNames, and components rerendered for each unnecessary rerendering
-    for (let i = 0; i < data.rerenders.length; i += 1) {
+    for (let i = 1; i < data.rerenders.length; i += 1) {
       if ((data.rerenders[i].components).length > 0) {
         log(chalk.underline(data.rerenders[i].type) + ': ', chalk.green(data.rerenders[i].name), chalk.green(' => ' + data.rerenders[i].components));
       }
