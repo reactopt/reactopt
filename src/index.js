@@ -1,29 +1,27 @@
 'use strict';
-// console.log("made it to why-did-you-update index.js");
 
-//unknown
+// declare exports
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
 var _deepDiff = require('./deepDiff');
-
 var _getDisplayName = require('./getDisplayName');
-
 var _normalizeOptions = require('./normalizeOptions');
-
 var _shouldInclude = require('./shouldInclude');
+
 
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
 var keyboardEvents = ['keypress', 'keydown', 'input'];
+var mouseEvents = ['click', 'dbclick', 'drag'];
 
 // monkeypatch
 // ****** called on render -> look down to opts.notifier
 function createComponentDidUpdate(opts) {
   return function componentDidUpdate(prevProps, prevState) {
-    //displayname is comp name
+    //displayname is component name
     var displayName = (0, _getDisplayName.getDisplayName)(this);
 
     //should include returns display/comp name, if return value doesn't exist exit compDidUpdate w/o doing anything
@@ -56,17 +54,19 @@ function createComponentDidUpdate(opts) {
         window.data[currentEventType][currentEventName] = {};
       }
 
+      // storing event data in window's 'data' object
       window.data[currentEventType][currentEventName][displayName] = displayName;
     }
 
     // ****** call to opts.notifier -> look normalizeOptions bottom
-    opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
+    // ^^^^^^ opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
+
 // takes in react component, triggers all other logic, is exported out
 var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
-  // even listener for load page
+  // event listener for load page
   window.addEventListener('load', () => {
     // calculation for total time taken to render the webpage
     const startLoadTime = window.performance.timing.loadEventStart
@@ -76,25 +76,16 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     window.data.time = deltaTime + 'ms';
   });
 
-  //event listener to grab event type & target to pass to data
-  window.addEventListener('click', (e) => {
-    eventClickAndDrag('click', e);
-  });
-
-  window.addEventListener('dblclick', (e) => {
-    eventClickAndDrag('dblclick', e);
-  });
-
-  window.addEventListener('drag', (e) => {
-    eventClickAndDrag('drag', e);
-  });
-
-  function eventClickAndDrag(event, e) {
-    currentEventType = event;
+  /**
+   * function handler for click, dbclick, and drag
+   */
+  function handleMouseEvents(e) {
+    console.log(e.type);
+    currentEventType = e.type;
     let localName = e.target.localName;
     let innerText = '';
-    // console.log('e.target', e.target);
 
+    // description string for click elements
     function setInnerText(type, targetInfo) {
       innerText = type +': ' + targetInfo;
     }
@@ -118,7 +109,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     }
     // if clicked element is '<div>', check id, then className for descriptor
     else if (localName === 'div') {
-      // console.log('innerText',e.target);
       if (e.target.id) {
         setInnerText('id', e.target.id);
       } else if (e.target.className){
@@ -129,20 +119,22 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
       innerText = 'unknown';
     }
     currentEventName = localName +' ('+innerText+')';
-    console.log('e', e);
-    console.log('currentEventName',currentEventName);
+    // debugging console.log
+    // console.log('currentEventName',currentEventName);
   }
   
   /**
    * function handler for key pressed, key down, and input
    */
-  function handleEvent(e) {
+  function handleKeys(e) {
     currentEventType = e.type;
     currentEventName = e.code;
   }
 
   // window object listen to different keyboardEvents based on the initial keyboardEvents array
-  keyboardEvents.map(eventName => window.addEventListener(eventName, handleEvent));
+  keyboardEvents.map(eventName => window.addEventListener(eventName, handleKeys));
+
+  mouseEvents.map(eventName => window.addEventListener(eventName, handleMouseEvents));
   
   //FORMATTING options - 1) include or exclude by displayname/component OR 2)by default can group by component
   //if < 1 return true, return empty obj, return arguments[1]
@@ -169,7 +161,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     if (_createClass) {
       //rewriting orig createclass
       React.createClass = function createClass(obj) {
-        console.log("boo!!");
         // object that has method compDidUpdate that references a call to the new createComponentDidUpdate
         var Mixin = {
           componentDidUpdate: createComponentDidUpdate(opts)
@@ -187,8 +178,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
         return _createClass.call(React, obj);
       };
     }
-    // test lod of data
-    console.log("OUR DATA OBJECT (holding events & their components)", data);
   } catch (e) {}
 
   // returning lifecylce func defs to original/before WDYU happened
