@@ -80,8 +80,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
    * function handler for click, dbclick, and drag
    */
   function handleMouseEvents(e) {
-    console.log(e.type);
-    currentEventType = e.type;
     let localName = e.target.localName;
     let innerText = '';
 
@@ -119,6 +117,14 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
       innerText = 'unknown';
     }
     currentEventName = localName +' ('+innerText+')';
+
+    let obj = {
+      type: e.type,
+      name: currentEventName,
+      components: []
+    };
+    window.data.rerenders.push(obj);
+
     // debugging console.log
     // console.log('currentEventName',currentEventName);
   }
