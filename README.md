@@ -13,7 +13,7 @@ npm install --save-dev reactopt
 
 Include this code at the top of your main React component file:
 ```js
-import { reactopt } from 'reactopt/exports';
+import { reactopt } from 'reactopt';
 reactopt(React);
 ```
 
