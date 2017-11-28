@@ -10,12 +10,14 @@ var _getDisplayName = require('./getDisplayName');
 var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
-// data storage for render component
-var data = {
-  renders: [],
-}
-var currentEventName = "initialLoad";
-var currentEventType = "initialLoad";
+window.data = {
+  time: '',
+  rerenders : [{
+    type: 'initialLoad',
+    name: 'initialLoad',
+    components: []
+  }]
+};
 
 var keyboardEvents = ['keypress', 'keydown', 'input'];
 var mouseEvents = ['click', 'dbclick', 'drag'];
@@ -45,26 +47,11 @@ function createComponentDidUpdate(opts) {
     // temp timeout because event listener sets global event names after components re-render
     setTimeout(timeTest,100);
     function timeTest() {
-      if (!window.data) {
-        window.data = {
-          rerenders : [{
-            type: type,
-            name: name,
-            components: []
-          }]
-        };
-      }
-      
-      // if (!window.data.rerenders[currentEventType]) {
-      //       window.data.rerenders[currentEventType] = {};
-      // }
-
-      // if (!window.data.rerenders[currentEventType][currentEventName]) {
-      //   window.data.rerenders[currentEventType][currentEventName] = {};
-      // }
+      console.log('data!!!',window.data);
 
       // storing event data in window's 'data' object
-      window.data.rerenders.push(tempObj);
+      let len = (window.data.rerenders).length - 1;
+      window.data.rerenders[len].components.push(displayName);
     }
 
     // ****** call to opts.notifier -> look normalizeOptions bottom
@@ -81,7 +68,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     const startLoadTime = window.performance.timing.loadEventStart
     const endLoadTime = window.performance.timing.domLoading
     const deltaTime = startLoadTime - endLoadTime;
-    window.data = {};
+
     window.data.time = deltaTime + 'ms';
   });
 
@@ -125,7 +112,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     else {
       innerText = 'unknown';
     }
-    currentEventName = localName +' ('+innerText+')';
+    let currentEventName = localName +' ('+innerText+')';
 
     let obj = {
       type: e.type,
@@ -145,10 +132,8 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
     let tempObj = {};
     tempObj.type = e.type;
     tempObj.name = e.code;
-    tempObj.comp = [];
-    data[renders].push(tempObj);
-    // currentEventType = e.type;
-    // currentEventName = e.code;
+    tempObj.components = [];
+    window.data.rerenders.push(tempObj);
   }
 
   // window object listen to different keyboardEvents based on the initial keyboardEvents array
