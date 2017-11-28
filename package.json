@@ -20,9 +20,13 @@
     "url": "git+https://github.com/reactopt/reactopt.git"
   },
   "scripts": {
-    "reactopt": "babel-node main.js"
+    "reactopt": "babel-node main.js",
+    "test": "mocha -c test/index.js"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "express": "^4.16.2",
+    "mocha": "^4.0.1"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
