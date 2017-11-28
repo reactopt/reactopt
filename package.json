@@ -14,7 +14,7 @@
     "Vu Phung",
     "Selina Zawacki"
   ],
-  "main": "main.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reactopt/reactopt.git"
