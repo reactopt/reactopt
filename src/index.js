@@ -10,7 +10,10 @@ var _getDisplayName = require('./getDisplayName');
 var _normalizeOptions = require('./normalizeOptions');
 var _shouldInclude = require('./shouldInclude');
 
-
+// data storage for render component
+var data = {
+  renders: [],
+}
 var currentEventName = "initialLoad";
 var currentEventType = "initialLoad";
 
@@ -127,8 +130,13 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
    * function handler for key pressed, key down, and input
    */
   function handleKeys(e) {
-    currentEventType = e.type;
-    currentEventName = e.code;
+    let tempObj = {};
+    tempObj.type = e.type;
+    tempObj.name = e.code;
+    tempObj.comp = [];
+    data[renders].push(tempObj);
+    // currentEventType = e.type;
+    // currentEventName = e.code;
   }
 
   // window object listen to different keyboardEvents based on the initial keyboardEvents array
