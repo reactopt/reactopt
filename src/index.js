@@ -136,7 +136,7 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
 
     // debugging console.log
     // console.log('currentEventName',currentEventName);
-  }
+  } 
   
   /**
    * function handler for key pressed, key down, and input
