@@ -1,5 +1,7 @@
 let reactopt = require('./src/index.js').whyDidYouUpdate;
-// reactopt = reactopt.whyDidYouUpdate;
 
-export {reactopt};
-// exports.reactopt = reactopt;
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+exports.reactopt = reactopt;
