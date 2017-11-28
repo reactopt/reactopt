@@ -43,19 +43,25 @@ function createComponentDidUpdate(opts) {
     setTimeout(timeTest,100);
     function timeTest() {
       if (!window.data) {
-        window.data = {};
+        window.data = {
+          rerenders : [{
+            type: type,
+            name: name,
+            components: []
+          }]
+        };
       }
       
-      if (!window.data[currentEventType]) {
-            window.data[currentEventType] = {};
-      }
+      // if (!window.data.rerenders[currentEventType]) {
+      //       window.data.rerenders[currentEventType] = {};
+      // }
 
-      if (!window.data[currentEventType][currentEventName]) {
-        window.data[currentEventType][currentEventName] = {};
-      }
+      // if (!window.data.rerenders[currentEventType][currentEventName]) {
+      //   window.data.rerenders[currentEventType][currentEventName] = {};
+      // }
 
       // storing event data in window's 'data' object
-      window.data[currentEventType][currentEventName][displayName] = displayName;
+      window.data.rerenders.push(tempObj);
     }
 
     // ****** call to opts.notifier -> look normalizeOptions bottom
