@@ -101,39 +101,41 @@ function loadTime(data) {
 }
 
 function componentRerenders(data) {
-
   printLine('heading', 'Component Re-rendering');
   log('');
 
-  let eventTypes = Object.keys(data);
-  if (eventTypes.length !== 0) {
-    let eventNames;
+//PREVIOUS CODE
+  // let eventTypes = Object.keys(data);
+  if (data.rerenders.length !== 0) {
+  // let eventNames;
     printLine('fail', 'There are components that unnecessarily re-rendered, and the events that triggered them:');
     log('');
-    //print eventTypes, eventNames, and components rerendered for each
-    for (let x = 0; x < eventTypes.length; x += 1) {
-      if (eventTypes[x] !== 'time') { // filter out non-component data here
-        eventNames = Object.keys(data[eventTypes[x]]);
-        if (eventNames.length !== 0) {
-          // log(eventNames.length);
-          for (let y = 0; y < eventNames.length; y += 1) {
-            // log('eventNames[y]', eventNames[y]);
-            let comps = Object.keys(data[eventTypes[x]][eventNames[y]]);
-            
-            let eventType = eventTypes[x];
-            // log(eventType);
-            let eventName = eventNames[y];
-            // log(eventName);
-            // log('comps', comps);
-            log(chalk.underline(eventType) + ': ', chalk.green(eventName), chalk.green(' => ' + comps));
-            // log(chalk.underline(data[eventTypes[x]]), chalk.reset.white(' : ' + eventNames[y]), chalk.reset.white( ' ' + comps + ' ')  );
-          }
-        }
-      }
+  // print eventTypes, eventNames, and components rerendered for each unnecessary rerendering
+    for (let i = 0; i < data.rerenders.length; i += 1) {
+      log(chalk.underline(data.rerenders[i].type) + ': ', chalk.green(data.rerenders[i].name), chalk.green(' => ' + data.rerenders[i].comps));
     }
+    // for (let x = 0; x < eventTypes.length; x += 1) {
+      // if (eventTypes[x] !== 'time') { // filter out non-component data here
+      //   eventNames = Object.keys(data[eventTypes[x]]);
+        // if (eventNames.length !== 0) {
+          // log(eventNames.length);
+          // for (let y = 0; y < eventNames.length; y += 1) {
+          //   // log('eventNames[y]', eventNames[y]);
+          //   let comps = Object.keys(data[eventTypes[x]][eventNames[y]]);
+            
+          //   let eventType = eventTypes[x];
+          //   // log(eventType);
+          //   let eventName = eventNames[y];
+          //   // log(eventName);
+          //   // log('comps', comps);
+          //   log(chalk.underline(eventType) + ': ', chalk.green(eventName), chalk.green(' => ' + comps));
+          //   log(chalk.underline(data[eventTypes[x]]), chalk.reset.white(' : ' + eventNames[y]), chalk.reset.white( ' ' + comps + ' ')  );
+          // }
+        // }
+      // }
+    // }
     log('');
   }
   printLine('suggestion', "React components by default re-render on any state change.");  
   printLine('suggestion', "Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props each component utilizes don't change.");
-
 }
