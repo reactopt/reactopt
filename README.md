@@ -33,7 +33,16 @@ npm run reactopt localhost:####
 ```
 
 ## Team
-This module was created by [ ([Candace Rogers](https://github.com/candacerogue)) ], [ ([Pam Lam](https://github.com/itspamlam)) ], [ ([Vu Phung](https://github.com/Jin6Coding)) ], [ ([Selina Zawacki](https://github.com/szmoon)) ]
+This module was created by [Candace Rogers](https://github.com/candacerogue), [Pam Lam](https://github.com/itspamlam), [Vu Phung](https://github.com/Jin6Coding), [Selina Zawacki](https://github.com/szmoon)
+
+## Contact
+Like our app, found a bug?
+
+Let us know! 
+
+[reactopt@gmail.com](reactopt@gmail.com)
+
+Visit us at [www.reactopt.com](www.reactopt.com)
 
 ## Credit
 Utilizes a modified version of ([why-did-you-update by maicki](https://github.com/maicki/why-did-you-update))
