@@ -1,3 +1,9 @@
+<h1 align="center">
+	<img width="600" src="https://cdn.rawgit.com/reactopt/reactopt/f25673ed/media/logo.png" alt="reactopt">
+	<br>
+	<br>
+</h1>
+
 # reactopt
 [![npm version](https://badge.fury.io/js/reactopt.svg)](https://badge.fury.io/js/reactopt)
 
