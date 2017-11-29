@@ -53,9 +53,6 @@ function createComponentDidUpdate(opts) {
       let len = (window.data.rerenders).length - 1;
       window.data.rerenders[len].components.push(displayName);
     }
-
-    // ****** call to opts.notifier -> look normalizeOptions bottom
-    // ^^^^^^ opts.notifier(opts.groupByComponent, opts.collapseComponentGroups, displayName, [propsDiff, stateDiff]);
   };
 }
 
@@ -120,7 +117,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
       components: []
     };
     window.data.rerenders.push(obj);
-
     // debugging console.log
     // console.log('currentEventName',currentEventName);
   } 
@@ -156,7 +152,6 @@ var whyDidYouUpdate = function whyDidYouUpdate(React) {
   //rewriting original component did update, making it equal execution of createComponentDidUpdate(opts)
   React.Component.prototype.componentDidUpdate = createComponentDidUpdate(opts);
 
-  
   var _createClass = null;
   try {
     //holding orig def of React.createClass in _createClass
