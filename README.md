@@ -1,6 +1,5 @@
 <h1 align="center">
-	<br>
-	<img width="400" src="https://cdn.rawgit.com/reactopt/reactopt/f25673ed/media/logo.png" alt="reactopt">
+	<img width="600" src="https://cdn.rawgit.com/reactopt/reactopt/f25673ed/media/logo.png" alt="reactopt">
 	<br>
 	<br>
 </h1>
