@@ -1,4 +1,5 @@
 'use strict';
+
 //load image
 require('console-png').attachTo(console);
 let image = require('fs').readFileSync(__dirname + '/logo-small.png');
@@ -16,7 +17,17 @@ const rl = readline.createInterface({
 });
 
 // placeholder for data object window events
-let data; 
+// let data; // comment out for testing
+
+// data for testing suite
+let data = {
+  time: '0ms',
+  rerenders : [{
+    type: 'initialLoad',
+    name: 'initialLoad',
+    components: []
+  }]
+};
 
 let uri = process.argv[2]; // gets url from CLI "npm start [url]"
 
@@ -122,3 +133,9 @@ function componentRerenders(data) {
   printLine('suggestion', "React components by default re-render on any state change.");  
   printLine('suggestion', "Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props each component utilizes don't change.");
 }
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+exports.data = data;
