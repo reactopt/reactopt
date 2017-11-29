@@ -1,9 +1,14 @@
 # reactopt
 [![npm version](https://badge.fury.io/js/reactopt.svg)](https://badge.fury.io/js/reactopt)
 
-## About
-An open-source, CLI React performance optimization tool.
-** MODULE IS STILL IN DEVELOPMENT, NOT FULLY FUNCTIONAL YET **
+A CLI React performance optimization tool that identifies potential unnecessary re-rendering. 
+
+# About
+Reactopt identifies specific events that may be causing unnecessary re-rendering of components in your application, and which components may benefit from utilizing shouldComponentUpdate.
+
+Prior to React 16, the module react-addons-perf helped identify locations that developers may want to implement shouldComponentUpdate to limit over-rendering. However, since the module is no longer supported we created Reactopt to fill the gap, and also provide increased functionality for any version of React.
+
+Upon initiating Reactopt, your application will be launched in a browser for you to interact with. After you're finished and type 'done', you will see an audit on your application's component performance. 
 
 ## Install and Use
 npm install
@@ -24,12 +29,11 @@ Include this script in your package.json:
 
 Run command
 ```bash
-npm run reactopt {url of running application (local or remote), no brackets}
+npm run reactopt localhost:####
 ```
 
 ## Team
-This module was created by Candace Rogers, Pam Lam, Vu Phung and Selina Zawacki.
-
+This module was created by [ ([Candace Rogers](https://github.com/candacerogue)) ], [ ([Pam Lam](https://github.com/itspamlam)) ], [ ([Vu Phung](https://github.com/Jin6Coding)) ], [ ([Selina Zawacki](https://github.com/szmoon)) ]
 
 ## Credit
 Utilizes a modified version of ([why-did-you-update by maicki](https://github.com/maicki/why-did-you-update))

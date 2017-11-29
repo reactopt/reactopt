@@ -17,17 +17,17 @@ const rl = readline.createInterface({
 });
 
 // placeholder for data object window events
-// let data; // comment out for testing
+let data; // comment out for testing
 
-// data for testing suite
-let data = {
-  time: '0ms',
-  rerenders : [{
-    type: 'initialLoad',
-    name: 'initialLoad',
-    components: []
-  }]
-};
+// // data for testing suite
+// let data = {
+//   time: '0ms',
+//   rerenders : [{
+//     type: 'initialLoad',
+//     name: 'initialLoad',
+//     components: []
+//   }]
+// };
 
 let uri = process.argv[2]; // gets url from CLI "npm start [url]"
 
@@ -59,7 +59,7 @@ puppeteer.launch({headless: false}).then(async browser => {
   function reactoptRun() {
     log('');
     log('');
-    log(chalk.bgGreen.bold(' Reactopt is running - Interact with your app and then type "done" to perform audit. '));
+    log(chalk.bgGreen.bold(" Reactopt is running - Interact with your app, don't close the browser, then type 'done' to perform audit. "));
     log('');
   }
 })(); // iife
@@ -104,34 +104,38 @@ function printLine(type, string) {
   }
 }
 
-// EVENTUALLY MODULARIZE TESTS
+let indentD = '    $ ';
+let indent = '    ';
+
 // test functions
 function loadTime(data) {
   printLine('heading', 'Page Load Time');
-  printLine('pass', 'Your page took ' + data.time + ' to load');
+  log(indent + 'Your page took ' + data.time + ' to load');
+  log('');
 }
 
 function componentRerenders(data) {
   printLine('heading', 'Component Re-rendering');
-  log('');
 
-//PREVIOUS CODE
-  // let eventTypes = Object.keys(data);
-  if (data.rerenders.length !== 0) {
-  // let eventNames;
-    printLine('fail', 'There are components that are potentially being unnecessarily re-rendered, and the events that triggered them:');
+  if (data.rerenders.length > 1) {
+    printLine('fail', 'There are components that are potentially re-rendering unnecessarily. Below are identified events that triggered them:');
     log('');
-  // print eventTypes, eventNames, and components rerendered for each unnecessary rerendering
+    // print eventTypes, eventNames, and components rerendered for each unnecessary rerendering
     for (let i = 1; i < data.rerenders.length; i += 1) {
       if ((data.rerenders[i].components).length > 0) {
-        log(chalk.underline(data.rerenders[i].type) + ': ', chalk.green(data.rerenders[i].name), chalk.green(' => ' + data.rerenders[i].components));
+        log(indentD + chalk.underline(data.rerenders[i].type + ' - ' +  data.rerenders[i].name) + ' => ' + data.rerenders[i].components);
       }
     }
-
+    log('');
+    // print suggestions for possible improvements
+    log(chalk.italic('Possible improvements to re-rendering'));
+    log('');
+    printLine('suggestion', indent + "* " + "Consider utilizing shouldComponentDidUpdate of components that shouldn't be constantly re-rendering");
+    printLine('suggestion', indent + "* " + "Note: this may affect functionality of child components");
+    } else {
+    printLine('pass', indent + 'Way to go, Idaho! No unnecessary re-rendering of components were detected.');
     log('');
   }
-  printLine('suggestion', "React components by default re-render on any state change.");  
-  printLine('suggestion', "Consider implementing 'shouldComponentUpdate' to prevent re-rendering when \nthe states or props each component utilizes don't change.");
 }
 
 Object.defineProperty(exports, '__esModule', {

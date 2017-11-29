@@ -1,6 +1,6 @@
 {
   "name": "reactopt",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "React performance optimization CLI",
   "homepage": "https://github.com/reactopt/reactopt#readme",
   "bugs": {
@@ -35,23 +35,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "chalk": "2.3.0",
-    "chalk-animation": "^1.3.0",
     "console-png": "^1.2.1",
-    "lodash": "^4.13.1",
-    "lodash-webpack-plugin": "^0.8.1",
-    "puppeteer": "^0.12.0",
-    "react": "^15.0 || 0.14.x",
-    "react-dom": "^16.0.0",
-    "webpack": "^3.8.1"
-  },
-  "peerDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "chalk": "2.3.0",
-    "chalk-animation": "^1.3.0",
-    "console-png": "1.2.1",
     "lodash": "^4.13.1",
     "lodash-webpack-plugin": "^0.8.1",
     "puppeteer": "^0.12.0",

@@ -5,6 +5,7 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 
+
 // object test
 describe('initial data object from main.js', () => {
   it('data property of "type" is an object', () => {
@@ -60,3 +61,5 @@ describe('componentRerenders()', () => {
     spy.reset();
   });
 });
+
+
