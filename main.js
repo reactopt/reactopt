@@ -142,4 +142,5 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-exports.data = data;
+// exports.data = data;
+module.exports = { data, loadTime, printLine, componentRerenders };
