@@ -2,7 +2,7 @@
 
 //load image
 require('console-png').attachTo(console);
-let image = require('fs').readFileSync(__dirname + '/media/logo-small.png');
+let image = require('fs').readFileSync(__dirname + '/media/logo-cli.png');
 
 // chalk requirements
 const chalk = require('chalk');

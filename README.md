@@ -18,6 +18,8 @@ Upon initiating Reactopt, your application will be launched in a browser for you
 
 1.5 is the first working verison of this module.
 
+<p align="center"><img width="600" src="https://cdn.rawgit.com/reactopt/reactopt/b03f0dd2/media/screenshot.png" alt="reactopt-screenshot"></p>
+
 ## Install and Use
 npm install
 ```bash
