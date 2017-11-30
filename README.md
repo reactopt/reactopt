@@ -16,7 +16,7 @@ Prior to React 16, the module react-addons-perf helped identify locations that d
 
 Upon initiating Reactopt, your application will be launched in a browser for you to interact with. After you're finished and type 'done', you will see an audit on your application's component performance. 
 
-1.5 is the first working verison of this module.
+1.5.1 is the first working verison of this module.
 
 <p align="center"><img width="600" src="https://cdn.rawgit.com/reactopt/reactopt/b03f0dd2/media/screenshot.png" alt="reactopt-screenshot"></p>
 
@@ -52,7 +52,7 @@ Let us know!
 
 [reactopt@gmail.com](reactopt@gmail.com)
 
-Visit us at [www.reactopt.com](www.reactopt.com)
+Visit us at www.reactopt.com
 
 ## Credit
 Utilizes a modified version of ([why-did-you-update by maicki](https://github.com/maicki/why-did-you-update))
