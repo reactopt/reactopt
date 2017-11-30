@@ -16,7 +16,7 @@ Prior to React 16, the module react-addons-perf helped identify locations that d
 
 Upon initiating Reactopt, your application will be launched in a browser for you to interact with. After you're finished and type 'done', you will see an audit on your application's component performance. 
 
-1.5.1 is the first working verison of this module.
+1.5.0 is the first working verison of this module.
 
 <p align="center"><img width="600" src="https://cdn.rawgit.com/reactopt/reactopt/2341c162/media/screenshot.png" alt="reactopt-screenshot"></p>
 
@@ -26,10 +26,14 @@ npm install
 npm install --save-dev reactopt
 ```
 
-Include this code at the top of your main React component file:
+Include this code at the top of your main React component file (our module is meant to be used in [developement mode](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)):
 ```js
-import { reactopt } from 'reactopt';
-reactopt(React);
+import React from 'react'
+
+if (process.env.NODE_ENV !== 'production') {
+	import { reactopt } from 'reactopt';
+	reactopt(React);
+}
 ```
 
 Include this script in your package.json:
