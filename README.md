@@ -26,7 +26,7 @@ npm install
 npm install --save-dev reactopt
 ```
 
-Include this code at the top of your main React component file (our module is meant to be used in [developement mode](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)):
+Include this code at the top of your main React component file (our module is meant to be used in [development mode](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)):
 ```js
 import React from 'react'
 
