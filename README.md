@@ -18,6 +18,15 @@ Upon initiating Reactopt, your application will be launched in a browser for you
 
 1.5.0 is the first working verison of this module.
 
+### Current Events Supported:
+- Click/Double Click
+- Drag
+- KeyPress
+- KeyDown
+- Input
+
+We welcome contributions that add additional functionality.
+
 <p align="center"><img width="600" src="https://cdn.rawgit.com/reactopt/reactopt/2341c162/media/screenshot.png" alt="reactopt-screenshot"></p>
 
 ## Install and Use
