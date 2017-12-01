@@ -31,7 +31,7 @@ Include this code at the top of your main React component file (our module is me
 import React from 'react'
 
 if (process.env.NODE_ENV !== 'production') {
-	import { reactopt } from 'reactopt';
+	const { reactopt } = require('reactopt');
 	reactopt(React);
 }
 ```
