@@ -16,7 +16,7 @@ Prior to React 16, the module react-addons-perf helped identify locations that d
 
 Upon initiating Reactopt, your application will be launched in a browser for you to interact with. After you're finished and type 'done', you will see an audit on your application's component performance. 
 
-1.5.0 is the first working verison of this module.
+1.5.0 is the first working version of this module.
 
 ### Current Events Supported:
 - Click/Double Click
