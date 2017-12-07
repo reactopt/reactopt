@@ -16,9 +16,9 @@ Prior to React 16, the module react-addons-perf helped identify locations that d
 
 Upon initiating Reactopt, your application will be launched in a browser for you to interact with. After you're finished and type 'done', you will see an audit on your application's component performance. 
 
-1.5.0 is the first working verison of this module.
+1.5.0 is the first working version of this module. Utilizes async/await, which is natively supported in Node 7.6+.
 
-### Current Events Supported:
+### Interaction Events Currently Supported:
 - Click/Double Click
 - Drag
 - KeyPress
@@ -54,6 +54,9 @@ Run command
 ```bash
 npm run reactopt localhost:####
 ```
+## In the Pipeline
+- Support for React Native
+- Currently gathering feedback from users on useful updates to documentation/readme
 
 ## Team
 This module was created by [Candace Rogers](https://github.com/candacerogue), [Pam Lam](https://github.com/itspamlam), [Vu Phung](https://github.com/Jin6Coding), [Selina Zawacki](https://github.com/szmoon)
@@ -67,5 +70,5 @@ Let us know!
 
 Visit us at www.reactopt.com
 
-## Credit
+## Acknowledgements
 Utilizes a modified version of ([why-did-you-update by maicki](https://github.com/maicki/why-did-you-update))
