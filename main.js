@@ -130,7 +130,7 @@ function componentRerenders(data) {
     // print suggestions for possible improvements
     log(chalk.italic('Possible improvements to re-rendering'));
     log('');
-    printLine('suggestion', indent + "* " + "Consider utilizing shouldComponentDidUpdate of components that shouldn't be constantly re-rendering");
+    printLine('suggestion', indent + "* " + "Consider utilizing 'shouldComponentUpdate' for components that shouldn't be constantly re-rendering: https://reactjs.org/docs/react-component.html#shouldcomponentupdate");
     printLine('suggestion', indent + "* " + "Note: this may affect functionality of child components");
     } else {
     printLine('pass', indent + 'Way to go, Idaho! No unnecessary re-rendering of components were detected.');
